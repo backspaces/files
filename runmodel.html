@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Model</title>
+</head>
+
+<body>
+    <script type="module">
+        import { utils } from 'https://unpkg.com/agentscript/dist/agentscript.js'
+        import Model from './MyModel.js'
+
+        utils.printToPage('Running for 500 steps. Takes a while!')
+
+        const model = new Model()
+        await model.startup()
+        model.setup()
+        await utils.timeoutLoop(() => {
+            model.step()
+        }, 500)
+
+        const sample = utils.sampleModel(model)
+        utils.printToPage(sample)
+    </script>
+
+</body>
+
+</html>
